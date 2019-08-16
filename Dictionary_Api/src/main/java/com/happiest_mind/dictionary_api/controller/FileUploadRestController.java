@@ -54,7 +54,7 @@ public class FileUploadRestController {
 	@PutMapping("/upload")
 	public String uploadFile(@RequestParam("file") MultipartFile file) throws IOException
 	{
-		System.out.println("ho");
+		System.out.println("ho:  "+file.getContentType());
 		//System.out.println("Upload file:  "+file.getAbsolutePath());
 		CopyOnWriteArraySet<Word> wordCollection = new CopyOnWriteArraySet<>();
 
@@ -93,10 +93,10 @@ public class FileUploadRestController {
 	}
 
 
-	@PostMapping("/findWord/{word}") 
+	@PostMapping 
 	public String isWordExist(@PathParam("word") String word) { 
 		List<Word> isExist = fileStoreService.isWordStored(word); 
-		return "We have found --->"+isExist.get(0); 
+		return "We have found --->"+isExist.get(0).getWord(); 
 	}
 	
 	@GetMapping
