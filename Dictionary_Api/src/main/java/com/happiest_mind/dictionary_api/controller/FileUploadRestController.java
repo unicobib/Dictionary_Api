@@ -88,18 +88,19 @@ public class FileUploadRestController {
 			e.printStackTrace();
 
 		}
-		return "stored";
+		return "search";
 
 	}
 
 
-	@PostMapping 
-	public String isWordExist(@PathParam("word") String word) { 
+	@PostMapping("/findAWord") 
+	public String isWordExist(@RequestParam("word") String word) { 
+		System.out.println("########### word:  "+word);
 		List<Word> isExist = fileStoreService.isWordStored(word); 
 		return "We have found --->"+isExist.get(0).getWord(); 
 	}
 	
-	@GetMapping
+	@GetMapping("/findAllWord")
 	public String findAllWord() {
 		List<Word> words = fileStoreService.findAllWordsCollection();
 		StringBuilder sb = new StringBuilder(1000);
